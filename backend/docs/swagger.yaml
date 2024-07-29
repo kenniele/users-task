@@ -1,0 +1,178 @@
+definitions:
+  models.User:
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is an account task manager app
+  title: Account Task Manager
+  version: "1.0"
+paths:
+  /create/{Passport}:
+    post:
+      description: Create a user with the passport and other details
+      parameters:
+      - description: Passport
+        in: path
+        name: Passport
+        required: true
+        type: string
+      - description: User data
+        in: body
+        name: User
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      responses:
+        "200":
+          description: Success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create a new user
+      tags:
+      - users
+  /delete/{Passport}:
+    delete:
+      description: Delete a user with provided passport
+      parameters:
+      - description: Passport
+        in: path
+        name: Passport
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete a user
+      tags:
+      - users
+  /info/{PassportSeries}/{PassportNumber}:
+    get:
+      description: Get detailed user information using passport data
+      parameters:
+      - description: Passport Series
+        in: path
+        name: PassportSeries
+        required: true
+        type: string
+      - description: Passport Number
+        in: path
+        name: PassportNumber
+        required: true
+        type: string
+      responses:
+        "200":
+          description: User data
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get user information by passport
+      tags:
+      - users
+  /man/begin/{Passport}/{TaskName}:
+    post:
+      description: Start a new task for a user with a specific passport
+      parameters:
+      - description: Passport
+        in: path
+        name: Passport
+        required: true
+        type: string
+      - description: Task name
+        in: path
+        name: TaskName
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Begin a task for a user
+      tags:
+      - tasks
+  /man/end/{Passport}/{TaskID}:
+    post:
+      description: End a task for a user with a specific passport and task ID
+      parameters:
+      - description: Passport
+        in: path
+        name: Passport
+        required: true
+        type: string
+      - description: Task ID
+        in: path
+        name: TaskID
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: End a task for a user
+      tags:
+      - tasks
+  /update/{Passport}:
+    put:
+      description: Update user information using passport
+      parameters:
+      - description: Passport
+        in: path
+        name: Passport
+        required: true
+        type: string
+      - description: Updated user data
+        in: body
+        name: User
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      responses:
+        "200":
+          description: Success
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Update user details
+      tags:
+      - users
+swagger: "2.0"

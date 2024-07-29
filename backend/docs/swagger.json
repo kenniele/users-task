@@ -1,0 +1,264 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is an account task manager app",
+        "title": "Account Task Manager",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "paths": {
+        "/create/{Passport}": {
+            "post": {
+                "description": "Create a user with the passport and other details",
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create a new user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Passport",
+                        "name": "Passport",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "User data",
+                        "name": "User",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/delete/{Passport}": {
+            "delete": {
+                "description": "Delete a user with provided passport",
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Passport",
+                        "name": "Passport",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/info/{PassportSeries}/{PassportNumber}": {
+            "get": {
+                "description": "Get detailed user information using passport data",
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get user information by passport",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Passport Series",
+                        "name": "PassportSeries",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Passport Number",
+                        "name": "PassportNumber",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User data",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/man/begin/{Passport}/{TaskName}": {
+            "post": {
+                "description": "Start a new task for a user with a specific passport",
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "Begin a task for a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Passport",
+                        "name": "Passport",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Task name",
+                        "name": "TaskName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/man/end/{Passport}/{TaskID}": {
+            "post": {
+                "description": "End a task for a user with a specific passport and task ID",
+                "tags": [
+                    "tasks"
+                ],
+                "summary": "End a task for a user",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Passport",
+                        "name": "Passport",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Task ID",
+                        "name": "TaskID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/update/{Passport}": {
+            "put": {
+                "description": "Update user information using passport",
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update user details",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Passport",
+                        "name": "Passport",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated user data",
+                        "name": "User",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.User": {
+            "type": "object"
+        }
+    }
+}

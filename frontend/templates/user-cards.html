@@ -1,0 +1,45 @@
+{{ define "user-cards" }}
+<div class="col-md-8">
+    <div class="row g-3">
+        {{ range .users }}
+        <div class="col-md-6" id="user-cards">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ .FormattedName }}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">{{ .Passport }}</h6>
+                    <p class="card-text">{{ .Address }}</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Подробнее...
+                    </button>
+                    <a href="/man/{{ .Passport }}" class="btn btn-primary">
+                        Задачи
+                    </a>
+                </div>
+                <div class="card-footer text-body-secondary">
+                    Дата последнего обновления: {{ .FormattedUpdatedAt }}
+                </div>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Информация о пользователе</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Паспорт: {{ .Passport }}</li>
+                                    <li class="list-group-item">ФИО: {{ .LastName }} {{ .FirstName }} {{ .Patronymic }}</li>
+                                    <li class="list-group-item">Адрес: {{ .Address }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ else }}
+        <p>Нет пользователей для отображения.</p>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
