@@ -52,7 +52,7 @@
 2. Перейдите в директорию проекта:
 
    ```sh
-   cd user-task-project/backend
+   cd users-task-project/backend
    ```
 
 ### Запуск приложения
