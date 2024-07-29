@@ -46,13 +46,13 @@
 1. Клонируйте репозиторий:
 
     ```sh
-    git clone https://github.com/kenniele/users-task-project.git
+    git clone https://github.com/kenniele/users-task.git
    ```
 
 2. Перейдите в директорию проекта:
 
    ```sh
-   cd users-task-project/backend
+   cd users-task/backend
    ```
 
 ### Запуск приложения
